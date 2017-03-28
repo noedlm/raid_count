@@ -1,0 +1,21 @@
+body {
+    background: white url("http://placekitten.com/g/640/800") no-repeat right bottom;
+    font-family: sans-serif;
+}
+
+h1 {
+    color: #424242;
+}
+
+li {
+    text-decoration: none;
+}
+
+li a {
+    color: green;
+    text-decoration: none;
+}
+
+li a:hover {
+    font-weight: bold;
+}
