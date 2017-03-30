@@ -12,16 +12,28 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
+# local settings
+
+try:
+    from raid_count.local_settings import *
+except ImportError:
+    pass
+
+try:
+    SECRET_KEY = os.getenv('SECRET_KEY')
+except NameError:
+    print("os.getenv('SECRET_KEY') is not defined for some reason, wth!")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('PRODUCTION', True)
 
 ALLOWED_HOSTS = []
 
@@ -72,7 +84,7 @@ WSGI_APPLICATION = 'raid_count.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 import dj_database_url
 
-DATABASES = {'default': dj_database_url.config()}
+DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))}
 
 
 # Password validation
@@ -116,15 +128,3 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'collect_static')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static/'),
 )
-
-# local settings
-
-try:
-    from raid_count.local_settings import *
-except ImportError:
-    pass
-
-try:
-    SECRET_KEY = os.getenv('SECRET_KEY')
-except NameError:
-    print("os.getenv('SECRET_KEY') is not defined for some reason, wth!")
