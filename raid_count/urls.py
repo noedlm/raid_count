@@ -20,10 +20,10 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^raid/', include('roster.urls')),
-    url(r'^tally/', include('tally.urls')),
-    url(r'^$', TemplateView.as_view(template_name='home.html')),
+    url(r'^admin/', admin.site.urls, name='admin'),
+    url(r'^raid/', include('roster.urls'), name='raid'),
+    url(r'^tally/', include('tally.urls'), name='tally'),
+    url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
