@@ -11,7 +11,7 @@ from django.shortcuts import render
 def login(request):
     url = os.getenv('BLIZZARD_WEB_API_AUTHORIZE_URI')
     url_params = {
-        'redirect_uri': 'https://localhost/auth/consume',
+        'redirect_uri': 'https://raid-count.herokuapp.com/auth/consume',
         'client_id': os.getenv('BLIZZARD_WEB_API_PUBLIC_KEY'),
         'scope': 'wow.profile',
         'response_type': 'code',
