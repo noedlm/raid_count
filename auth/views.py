@@ -24,4 +24,6 @@ def login(request):
 
 def consume(request):
 
-    return HttpResponse(request)
+    code = urlparse(request.path)
+
+    return HttpResponse(code)
