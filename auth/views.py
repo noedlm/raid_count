@@ -11,12 +11,17 @@ from django.shortcuts import render
 def login(request):
     url = os.getenv('BLIZZARD_WEB_API_AUTHORIZE_URI')
     url_params = {
-        'redirect_uri': 'http://localhost',
+        'redirect_uri': 'https://localhost/auth/consume',
         'client_id': os.getenv('BLIZZARD_WEB_API_PUBLIC_KEY'),
         'scope': 'wow.profile',
         'response_type': 'code',
-        'state': 'sodfmadasdgas'
     }
     url += '?' + urlencode(url_params)
     #r = requests.get(url, params=url_params)
+
     return HttpResponseRedirect(url)
+
+
+def consume(request):
+
+    return HttpResponse(request)
