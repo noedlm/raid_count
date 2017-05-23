@@ -24,6 +24,7 @@ def login(request):
 
 def consume(request):
 
-    code = urlparse(request.GET.urlencode()) #META['QUERY_STRING'])
+    code = urlparse(request.GET) #META['QUERY_STRING'])
+    
 
     return HttpResponse(code)
