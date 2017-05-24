@@ -34,7 +34,6 @@ def consume(request):
             'grant_type': 'authorization_code',
         }
         r = requests.post(url, payload)
-        pdb.set_trace()
 
         return HttpResponse(r)
 
