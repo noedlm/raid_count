@@ -33,11 +33,9 @@ def consume(request):
             'code': code,
             'grant_type': 'authorization_code',
         }
-        new_request = requests.post(url, payload)
+        r = requests.post(url, payload)
         pdb.set_trace()
 
-        return HttpResponse(new_request)
-
-    pdb.set_trace()
+        return HttpResponse(r)
 
     return 'could not get that damn token!'
