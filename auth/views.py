@@ -1,6 +1,7 @@
 import os
-from urllib.parse import urlparse, urlencode
+import pdb
 import requests
+from urllib.parse import urlparse, urlencode
 
 
 from django.http import HttpResponse, HttpResponseRedirect
@@ -23,8 +24,20 @@ def login(request):
 
 
 def consume(request):
+    if 'code' in request.GET:
+        code = request.GET['code']
+        url = os.getenv('BLIZZARD_WEB_API_TOKEN_URI')
+        payload = {
+            'client_id': os.getenv('BLIZZARD_WEB_API_PUBLIC_KEY'),
+            'client_secret': os.getenv('BLIZZARD_WEB_API_PRIVATE_KEY'),
+            'code': code,
+            'grant_type': 'authorization_code',
+        }
+        new_request = requests.post(url, payload)
+        pdb.set_trace()
 
-    code = request.GET['code']
+        return HttpResponse(new_request)
 
+    pdb.set_trace()
 
-    return HttpResponse(code)
+    return 'could not get that damn token!'
