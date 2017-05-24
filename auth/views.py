@@ -32,6 +32,8 @@ def consume(request):
             'client_secret': os.getenv('BLIZZARD_WEB_API_PRIVATE_KEY'),
             'code': code,
             'grant_type': 'authorization_code',
+            'scope': 'wow.profile',
+            'redirect_uri': 'https://raid-count.herokuapp.com/auth/consume',
         }
         r = requests.post(url, payload)
 
